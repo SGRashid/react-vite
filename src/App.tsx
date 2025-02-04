@@ -1,5 +1,6 @@
 import './App.css';
 import Button from './components/Button/Button';
+import CardButton from './components/CardButton/CardButton';
 import { JournalItem, JournalItemProps } from './components/JournalItem/JournalItem';
 
 function App() {
@@ -14,11 +15,13 @@ function App() {
   return (
     <div className='main-container'>
       <Button />
-      <JournalItem
-        title={data[0].title}
-        date={data[0].date}
-        data={data[0].data}
+      <CardButton>
+        <JournalItem
+          title={data[0].title}
+          date={data[0].date}
+          data={data[0].data}
       />
+      </CardButton>
     </div>
   );
 }
