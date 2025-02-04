@@ -1,0 +1,22 @@
+.journal-item {
+    border-radius: 3px;
+    background-color: #414141 !important;
+    color: white;
+    padding: 20px;
+    width: 300px;
+}
+
+.journal-item__header {
+    margin: 10px !important;
+    margin-left: 0px !important;
+}
+
+.journal-item__body {
+    display: flex;
+    gap: 20px;
+    font-size: 1em;
+}
+
+.journal-item__date  {
+    color: rgb(189, 189, 189);
+}
