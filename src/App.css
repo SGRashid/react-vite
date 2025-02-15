@@ -2,7 +2,28 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  /* justify-content: space-evenly; */
+  gap: 0px;
+}
+
+.side-panel {
+  width: 33vw;
+}
+
+.body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 50px;
 }

@@ -1,6 +1,7 @@
 import './JournalItem.css';
 
 interface JournalItemProps {
+    id: number;
     title: string;
     date: Date;
     data: string;
