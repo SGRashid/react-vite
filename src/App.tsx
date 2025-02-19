@@ -35,7 +35,7 @@ function App() {
         {
           data.map(item =>
             <CardButton key={item.id}>
-              <JournalItem props={item}/>
+              <JournalItem {...item}/>
             </CardButton>
           )
         }
