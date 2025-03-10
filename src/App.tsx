@@ -1,6 +1,7 @@
 import './App.css';
 import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
+import ColoredButton from './components/ColoredButton/ColoredButton';
 import { JournalItem, JournalItemProps } from './components/JournalItem/JournalItem';
 import getFomrData from './services/GetFormData';
 
@@ -46,7 +47,10 @@ function App() {
         <input type='text' name="input2" />
         <input type="date" name="date" />
         <Button />
-        <Button />
+        {/* <Button /> */}
+        <ColoredButton>
+          Нажми на меня!!
+        </ColoredButton>
       </form>
       </div>
     </div>
