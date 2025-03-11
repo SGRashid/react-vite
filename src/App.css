@@ -3,13 +3,13 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: space-evenly; */
   gap: 0px;
 }
 
 .side-panel {
-  width: 33vw;
+  /* width: 33vw; */
 }
 
 .body {
@@ -17,13 +17,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
+}
+
+.body form {
+  width: 33vw;  
 }
 
 .journal-form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
   margin-bottom: 50px;
+}
+
+.journal-form input, textarea {
+  border-radius: 10px;
+  min-height: 30px;
+  padding: 5px;
 }

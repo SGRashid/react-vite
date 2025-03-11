@@ -29,10 +29,10 @@ function App() {
   return (
     <div className='main-container'>
       <div className="side-panel">
-        <CardButton>
+        {/* <CardButton>
           <p>+</p>
           <p>Новое воспоминане</p>
-        </CardButton>
+        </CardButton> */}
         {
           data.map(item =>
             <CardButton key={item.id}>
@@ -44,8 +44,8 @@ function App() {
       <div className="body">
       <form className='journal-form' onSubmit={formHandler}>
         <input type='text' name="input1" />
-        <input type='text' name="input2" />
         <input type="date" name="date" />
+        <textarea name="input2" />
         <Button />
         {/* <Button /> */}
         <ColoredButton>
