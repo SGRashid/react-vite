@@ -9,7 +9,9 @@
 }
 
 .side-panel {
-  /* width: 33vw; */
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .body {
