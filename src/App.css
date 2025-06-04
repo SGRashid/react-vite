@@ -34,8 +34,15 @@
   margin-bottom: 50px;
 }
 
-.journal-form input, textarea {
+.journal-form input,
+.journal-form textarea {
   border-radius: 10px;
   min-height: 30px;
   padding: 5px;
+}
+
+.journal-form.not-ok input,
+.journal-form.not-ok textarea {
+  border-color: red;
+  border-width: 3px;
 }

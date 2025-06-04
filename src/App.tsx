@@ -16,6 +16,8 @@ function App() {
 
   const [items, setData] = useState<JournalItemProps[]>([]);
 
+  const [isValidationOk, setValidationState] = useState<boolean>(true);
+
   useEffect(() => {
     const localStorageData = localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY);
     if (localStorageData) {
@@ -41,7 +43,8 @@ function App() {
     const fp = getFomrData(e);
 
     if (!fp.title || !fp.date || !fp.data) {
-      alert('ДАННЫЕ ВВЕДИ !!!');
+      setValidationState(false);
+      setTimeout(() => setValidationState(true), 2000);
       return;
     }
 
@@ -75,11 +78,14 @@ function App() {
         }
       </div>
       <div className="body">
-      <form className='journal-form' onSubmit={formHandler}>
+      <form
+        className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
+        onSubmit={formHandler}
+      >
         <input type='text' name="title" />
         <input type="date" name="date" />
         <textarea name="data" />
-        <Button />
+        <Button text='Сохранить' />
         {/* <Button /> */}
         {/* <ColoredButton>
           Нажми на меня!!

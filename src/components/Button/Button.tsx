@@ -1,11 +1,11 @@
 import './Button.css';
 
-const Button = (): JSX.Element => {
+const Button = (props: { text: string }): JSX.Element => {
     return (
         <button
             className='button accent'
         >
-            Сохранить
+            { props.text }
         </button>
     );
 };
