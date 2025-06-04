@@ -1,35 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import './App.css';
 import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
 // import ColoredButton from './components/ColoredButton/ColoredButton';
-import { JournalItem, JournalItemProps } from './components/JournalItem/JournalItem';
+import { JournalItem } from './components/JournalItem/JournalItem';
 import getFomrData from './services/GetFormData';
+import { JournalItemProps, ParsedJournalItem } from './types/JournalItemsTypes';
+import { LOCAL_STORAGE_ITEMS_KEY } from './constants/JournalItemsStorageKey';
 
-const LOCAL_STORAGE_ITEMS_KEY = 'SAVED_ITEMS';
+
 
 function App() {
-  // const INITIAL_DATA: JournalItemProps[] = [
-  //   {
-  //     id: 1,
-  //     title: 'Вечеринка',
-  //     date: new Date,
-  //     data: 'Купили абсент и колу...'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Вечеринка',
-  //     date: new Date,
-  //     data: 'Купили абсент и колу...'
-  //   }
-  // ];
+
+  // const [ formState, dispatchForm ] = useReducer(formReducer, INITIAL_STATE);
 
   const [items, setData] = useState<JournalItemProps[]>([]);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY);
     if (localStorageData) {
-      const parsedData = JSON.parse(localStorageData).map((item: any) => ({...item, date: new Date(item.date as string)}));
+      const parsedData: JournalItemProps[] = JSON.parse(localStorageData)
+        .map(
+          (item: ParsedJournalItem) => ({...item, date: new Date(item.date)})
+        );
       setData(parsedData);
     }
   }, []);
@@ -53,7 +46,6 @@ function App() {
     }
 
     setData(d => {
-      // const newId = d[d.length - 1]?.id + 1;
       const newId = Math.random() * 10_000;
 
       const newDataElement: JournalItemProps = {

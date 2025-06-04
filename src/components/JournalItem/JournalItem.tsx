@@ -1,11 +1,5 @@
 import './JournalItem.css';
-
-interface JournalItemProps {
-    id: number;
-    title: string;
-    date: Date;
-    data: string;
-}
+import { JournalItemProps } from '../../types/JournalItemsTypes';
 
 const JournalItem = (props: JournalItemProps): JSX.Element => {
     const { title, date, data } = props;
