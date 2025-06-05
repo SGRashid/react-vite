@@ -7,6 +7,8 @@ import { JournalItem } from './components/JournalItem/JournalItem';
 import getFomrData from './services/GetFormData';
 import { JournalItemProps, ParsedJournalItem } from './types/JournalItemsTypes';
 import { LOCAL_STORAGE_ITEMS_KEY } from './constants/JournalItemsStorageKey';
+import { ButtonGrey } from './components/ButtonGrey/ButtonGrey';
+import { INITIAL_STATE_FOR_JOURNAL } from './constants/InitialStateForJournal';
 
 
 
@@ -26,6 +28,10 @@ function App() {
           (item: ParsedJournalItem) => ({...item, date: new Date(item.date)})
         );
       setData(parsedData);
+      console.log(1);
+    } else {
+      setData(INITIAL_STATE_FOR_JOURNAL);
+      console.log(2);
     }
   }, []);
 
@@ -35,6 +41,7 @@ function App() {
         return;
       }
       localStorage.setItem(LOCAL_STORAGE_ITEMS_KEY, JSON.stringify(items));
+      console.log(3);
     },
     [items]
   );
@@ -60,6 +67,13 @@ function App() {
 
       return [ ...d, newDataElement ];
     });
+
+    fp.title = '';
+  };
+
+  const clearData = () => {
+    localStorage.clear();
+    alert('Очистка!');
   };
 
   return (
@@ -77,20 +91,24 @@ function App() {
           )
         }
       </div>
-      <div className="body">
-      <form
-        className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
-        onSubmit={formHandler}
-      >
-        <input type='text' name="title" />
-        <input type="date" name="date" />
-        <textarea name="data" />
-        <Button text='Сохранить' />
-        {/* <Button /> */}
-        {/* <ColoredButton>
-          Нажми на меня!!
-        </ColoredButton> */}
-      </form>
+      <div className="form-container">
+        <form
+          className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
+          onSubmit={formHandler}
+        >
+          <input type='text' name="title" />
+          <input type="date" name="date" />
+          <textarea name="data" />
+          <Button text='Сохранить' />
+          {/* <Button /> */}
+          {/* <ColoredButton>
+            Нажми на меня!!
+          </ColoredButton> */}
+        </form>
+        <ButtonGrey
+          text={'Очистить память'}
+          onClick={clearData}
+        ></ButtonGrey>
       </div>
     </div>
   );

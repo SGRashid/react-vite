@@ -14,7 +14,7 @@
   flex-direction: column;
 }
 
-.body {
+.form-container {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   width: 100%;
 }
 
-.body form {
+.form-container {
   width: 33vw;  
 }
 
