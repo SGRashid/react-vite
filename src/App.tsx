@@ -5,10 +5,11 @@ import CardButton from './components/CardButton/CardButton';
 // import ColoredButton from './components/ColoredButton/ColoredButton';
 import { JournalItem } from './components/JournalItem/JournalItem';
 import getFomrData from './services/GetFormData';
-import { JournalItemProps, ParsedJournalItem } from './types/JournalItemsTypes';
+import { JournalForm, JournalItemProps, ParsedJournalItem } from './types/JournalItemsTypes';
 import { LOCAL_STORAGE_ITEMS_KEY } from './constants/JournalItemsStorageKey';
 import { ButtonGrey } from './components/ButtonGrey/ButtonGrey';
 import { INITIAL_STATE_FOR_JOURNAL } from './constants/InitialStateForJournal';
+import { INITIAL_FORM_STATE } from './App.state';
 
 
 
@@ -20,6 +21,8 @@ function App() {
 
   const [isValidationOk, setValidationState] = useState<boolean>(true);
 
+  const [formState, setFormState] = useState<JournalForm>(INITIAL_FORM_STATE);
+
   useEffect(() => {
     const localStorageData = localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY);
     if (localStorageData) {
@@ -28,10 +31,8 @@ function App() {
           (item: ParsedJournalItem) => ({...item, date: new Date(item.date)})
         );
       setData(parsedData);
-      console.log(1);
     } else {
       setData(INITIAL_STATE_FOR_JOURNAL);
-      console.log(2);
     }
   }, []);
 
@@ -41,7 +42,6 @@ function App() {
         return;
       }
       localStorage.setItem(LOCAL_STORAGE_ITEMS_KEY, JSON.stringify(items));
-      console.log(3);
     },
     [items]
   );
@@ -68,12 +68,11 @@ function App() {
       return [ ...d, newDataElement ];
     });
 
-    fp.title = '';
+    setFormState(structuredClone(INITIAL_FORM_STATE));
   };
 
   const clearData = () => {
     localStorage.clear();
-    alert('Очистка!');
   };
 
   return (
@@ -96,9 +95,9 @@ function App() {
           className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
           onSubmit={formHandler}
         >
-          <input type='text' name="title" />
-          <input type="date" name="date" />
-          <textarea name="data" />
+          <input type='text' name="title" value={formState.title} />
+          <input type="date" name="date" value={formState.date as undefined} />
+          <textarea name="data" value={formState.data} />
           <Button text='Сохранить' />
           {/* <Button /> */}
           {/* <ColoredButton>

@@ -1,3 +1,9 @@
+export interface JournalForm {
+        title: string | undefined,
+        date: Date | undefined,
+        data: string | undefined,
+}
+
 export interface JournalItemProps {
     id: number;
     title: string;
