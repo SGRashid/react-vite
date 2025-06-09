@@ -1,7 +1,7 @@
 export interface JournalForm {
-        title: string | undefined,
-        date: Date | undefined,
-        data: string | undefined,
+        title: string,
+        date: string,
+        data: string,
 }
 
 export interface JournalItemProps {

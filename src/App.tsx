@@ -47,6 +47,9 @@ function App() {
   );
 
   const formHandler: React.FormEventHandler = (e) => {
+
+    console.log(formState);
+
     const fp = getFomrData(e);
 
     if (!fp.title || !fp.date || !fp.data) {
@@ -70,6 +73,8 @@ function App() {
 
     setFormState(structuredClone(INITIAL_FORM_STATE));
   };
+
+  const clearForm = () => setFormState({ title: '', date: '', data: ''});
 
   const clearData = () => {
     localStorage.clear();
@@ -95,15 +100,19 @@ function App() {
           className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
           onSubmit={formHandler}
         >
-          <input type='text' name="title" value={formState.title} />
-          <input type="date" name="date" value={formState.date as undefined} />
-          <textarea name="data" value={formState.data} />
+          <input type='text' name="title" value={formState.title} onChange={({target: {value}}) => setFormState(s => ({ ...s, title: value}))}/>
+          <input type="date" name="date" value={formState.date} onChange={({target: {value}}) => setFormState(s => ({ ...s, date: value}))}/>
+          <textarea name="data" value={formState.data} onChange={({target: {value}}) => setFormState(s => ({ ...s, data: value}))}/>
           <Button text='Сохранить' />
           {/* <Button /> */}
           {/* <ColoredButton>
             Нажми на меня!!
           </ColoredButton> */}
         </form>
+        <ButtonGrey
+          text={'Очистить форму'}
+          onClick={clearForm}
+        ></ButtonGrey>
         <ButtonGrey
           text={'Очистить память'}
           onClick={clearData}
