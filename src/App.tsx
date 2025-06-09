@@ -46,13 +46,9 @@ function App() {
     [items]
   );
 
-  const formHandler: React.FormEventHandler = (e) => {
+  const formHandler: React.FormEventHandler = () => {
 
-    console.log(formState);
-
-    const fp = getFomrData(e);
-
-    if (!fp.title || !fp.date || !fp.data) {
+    if (!formState.title || !formState.date || !formState.data) {
       setValidationState(false);
       setTimeout(() => setValidationState(true), 2000);
       return;
@@ -63,9 +59,9 @@ function App() {
 
       const newDataElement: JournalItemProps = {
         id: newId,
-        title: fp.title,
-        date: new Date(fp.date as string),
-        data: fp.data
+        title: formState.title,
+        date: new Date(formState.date as string),
+        data: formState.data
       } as JournalItemProps;
 
       return [ ...d, newDataElement ];
