@@ -11,6 +11,7 @@ import { ButtonGrey } from './components/ButtonGrey/ButtonGrey';
 import { INITIAL_STATE_FOR_JOURNAL } from './constants/InitialStateForJournal';
 import { formReducer, INITIAL_STATE } from './App.state';
 import { APP_ACTIONS_TYPES } from './App.actions';
+import { Header } from './components/Header/Header';
 
 
 
@@ -78,44 +79,47 @@ function App() {
   const dataHandler: React.ChangeEventHandler<HTMLTextAreaElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_DATA, playload: value });
 
   return (
-    <div className='main-container'>
-      <div className="side-panel">
-        {/* <CardButton>
-          <p>+</p>
-          <p>Новое воспоминане</p>
-        </CardButton> */}
-        {
-          items.map(item =>
-            <CardButton key={item.id}>
-              <JournalItem {...item}/>
-            </CardButton>
-          )
-        }
+    <>
+      <Header></Header>
+      <div className='main-container'>
+        <div className="side-panel">
+          {/* <CardButton>
+            <p>+</p>
+            <p>Новое воспоминане</p>
+          </CardButton> */}
+          {
+            items.map(item =>
+              <CardButton key={item.id}>
+                <JournalItem {...item}/>
+              </CardButton>
+            )
+          }
+        </div>
+        <div className="form-container">
+          <form
+            className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
+            onSubmit={formHandler}
+          >
+            <input type='text' name="title" value={formState.values.title} onChange={titleHandler}/>
+            <input type="date" name="date" value={formState.values.date} onChange={dateHandler}/>
+            <textarea name="data" value={formState.values.data} onChange={dataHandler}/>
+            <Button text='Сохранить' />
+            {/* <Button /> */}
+            {/* <ColoredButton>
+              Нажми на меня!!
+            </ColoredButton> */}
+          </form>
+          <ButtonGrey
+            text={'Очистить форму'}
+            onClick={clearForm}
+          ></ButtonGrey>
+          <ButtonGrey
+            text={'Очистить память'}
+            onClick={clearData}
+          ></ButtonGrey>
+        </div>
       </div>
-      <div className="form-container">
-        <form
-          className={'journal-form ' + (isValidationOk ? 'ok' : 'not-ok') }
-          onSubmit={formHandler}
-        >
-          <input type='text' name="title" value={formState.values.title} onChange={titleHandler}/>
-          <input type="date" name="date" value={formState.values.date} onChange={dateHandler}/>
-          <textarea name="data" value={formState.values.data} onChange={dataHandler}/>
-          <Button text='Сохранить' />
-          {/* <Button /> */}
-          {/* <ColoredButton>
-            Нажми на меня!!
-          </ColoredButton> */}
-        </form>
-        <ButtonGrey
-          text={'Очистить форму'}
-          onClick={clearForm}
-        ></ButtonGrey>
-        <ButtonGrey
-          text={'Очистить память'}
-          onClick={clearData}
-        ></ButtonGrey>
-      </div>
-    </div>
+    </>
   );
 }
 
