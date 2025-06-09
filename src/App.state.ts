@@ -1,9 +1,9 @@
 import { JournalForm } from './types/JournalItemsTypes';
 
 export const INITIAL_FORM_STATE: JournalForm = {
-        title: undefined,
-        date: undefined,
-        data: undefined,
+        title: '',
+        date: '',
+        data: '',
 };
 
 export const INITIAL_STATE = {
