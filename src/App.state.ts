@@ -1,29 +1,45 @@
-import { JournalForm } from './types/JournalItemsTypes';
+import { FormAction, APP_ACTIONS_TYPES } from './App.actions';
 
-export const INITIAL_FORM_STATE: JournalForm = {
+interface FormState {
+    isValidationOk: boolean;
+    values: {
+        title: string;
+        date: string;
+        data: string;
+    },
+}
+
+export const INITIAL_STATE = {
+    isValidationOk: true,
+    values: {
         title: '',
         date: '',
         data: '',
+    }
 };
 
-export const INITIAL_STATE = {
-    isValid: {
-        title: true,
-        date: true,
-        data: true,
-    },
-    values: {
-        title: undefined,
-        date: undefined,
-        data: undefined,
-    },
-    isFormReadyToSubmit: false,
-};
-
-export function formReducer(state, action) {
+export function formReducer(state: FormState, action: FormAction): FormState {
     switch(action.type) {
-        case ('RESET_VALIDITY'): 
-            return { ...state, isValid: INITIAL_STATE.isValid };
+        case (APP_ACTIONS_TYPES.RESET_VALIDITY): 
+            return { ...state, isValidationOk: INITIAL_STATE.isValidationOk };
+        case(APP_ACTIONS_TYPES.SET_VALIDITY_OK):
+            return { ...state, isValidationOk: INITIAL_STATE.isValidationOk };
+        case(APP_ACTIONS_TYPES.SET_VALIDITY_NOT_OK):
+            return { ...state, isValidationOk: false };
+        case(APP_ACTIONS_TYPES.SET_TITLE):
+            return { ...state, values:
+                { ...state.values, title: action.playload }
+            };
+        case(APP_ACTIONS_TYPES.SET_DATE):
+            return { ...state, values:
+                { ...state.values, date: action.playload }
+            };
+        case(APP_ACTIONS_TYPES.SET_DATA):
+            return { ...state, values:
+                { ...state.values, data: action.playload }
+            };
+        case(APP_ACTIONS_TYPES.CLEAR_VALUES):
+            return INITIAL_STATE;
         default:
             return state;
     }
