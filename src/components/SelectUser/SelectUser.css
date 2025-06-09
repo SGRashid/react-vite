@@ -1,10 +1,10 @@
-.header {
+.SelectUser {
     margin-bottom: auto;
     margin-left: auto;
     width: 200px;
     color: white;
 }
 
-.header select {
+.SelectUser select {
     width: 90%;
 }

@@ -11,9 +11,7 @@ import { ButtonGrey } from './components/ButtonGrey/ButtonGrey';
 import { INITIAL_STATE_FOR_JOURNAL } from './constants/InitialStateForJournal';
 import { formReducer, INITIAL_STATE } from './App.state';
 import { APP_ACTIONS_TYPES } from './App.actions';
-import { Header } from './components/Header/Header';
-
-
+import { SelectUser } from './components/SelectUser/SelectUser';
 
 function App() {
 
@@ -80,7 +78,7 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+      <SelectUser></SelectUser>
       <div className='main-container'>
         <div className="side-panel">
           {/* <CardButton>

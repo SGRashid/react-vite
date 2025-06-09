@@ -1,10 +1,12 @@
-import './Header.css';
+import './SelectUser.css';
 
-export function Header(): JSX.Element {
+export function SelectUser(): JSX.Element {
+    const changeUser: React.ChangeEventHandler<HTMLSelectElement> = (e) => console.log(e.target.value);
+
     return (
-        <div className="header">
+        <div className="SelectUser">
             <span>Выбор пользователя</span>
-            <select name="" id="">
+            <select name="" id="" onChange={changeUser}>
                 <option value="1">Аннунак</option>
                 <option value="2">Вася</option>
                 <option value="3">Серега</option>

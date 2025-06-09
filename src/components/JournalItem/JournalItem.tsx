@@ -7,7 +7,7 @@ const JournalItem = (props: JournalItemProps): JSX.Element => {
 
     return (
         <div className="journal-item">
-            <h2 className="journal-item__header">{ title }</h2>
+            <h2 className="journal-item__SelectUser">{ title }</h2>
             <h2 className="journal-item__body">
                 <div className="journal-item__date">{ formatedDate }</div>
                 <div className="journal-item__text">{ data }</div>
