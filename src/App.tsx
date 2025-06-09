@@ -73,8 +73,8 @@ function App() {
     localStorage.clear();
   };
 
-  const titleHandler: React.ChangeEventHandler<HTMLTextAreaElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_TITLE, playload: value });
-  const dateHandler: React.ChangeEventHandler<HTMLTextAreaElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_DATE, playload: value });
+  const titleHandler: React.ChangeEventHandler<HTMLInputElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_TITLE, playload: value });
+  const dateHandler: React.ChangeEventHandler<HTMLInputElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_DATE, playload: value });
   const dataHandler: React.ChangeEventHandler<HTMLTextAreaElement> = ({target: {value}}) => dispatchForm({ type: APP_ACTIONS_TYPES.SET_DATA, playload: value });
 
   return (
