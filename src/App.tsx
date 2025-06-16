@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import './App.css';
 import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
@@ -12,6 +12,7 @@ import { INITIAL_STATE_FOR_JOURNAL } from './constants/InitialStateForJournal';
 import { formReducer, INITIAL_STATE } from './App.state';
 import { APP_ACTIONS_TYPES } from './App.actions';
 import { SelectUser } from './components/SelectUser/SelectUser';
+import { UserContext } from './context/UserContext';
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
   const [items, setData] = useState<JournalItemProps[]>([]);
 
   const [isValidationOk, setValidationState] = useState<boolean>(true);
+
+  const { id } = useContext(UserContext);
+
+  console.log(id);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY);
@@ -79,6 +84,7 @@ function App() {
   return (
     <>
       <SelectUser></SelectUser>
+      <span style={{ 'color': 'white' }}>{ id }</span>
       <div className='main-container'>
         <div className="side-panel">
           {/* <CardButton>
